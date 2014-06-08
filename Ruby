@@ -1,0 +1,42 @@
+class Book<ActiveRecord::Base
+  belongs_to :genre
+  validates_presence_of :title
+  validates_
+end
+class Genre<ActiveRecord::Base
+  has_many :books
+end
+class Book<ApplicationController
+  def show
+    @books=Book.find(params[:id])
+  end
+  def list
+    @books=Book.find(:all)
+  end
+  def create
+    @books=Book.new(params[:book])
+    if @book.save
+      redirect_to :action => 'list'
+    else
+      @genres=Genre.find(:all)
+      redirect_to :action => 'new'
+    end
+  end
+  def new
+    @books=Book.new
+    @genres=Genre.find(:all)
+  end
+  def delete
+    @books=Book.find(params[:id]).destroy
+    redirect_to :action => 'list'
+  end
+end
+<% page_title="All of Your Favorite Books"%>
+<% greeting="Welcome!"%>
+<html>
+<head>
+<title><%=page_title%></title>
+</head>
+<body>
+<p><%=greeting%></p>
+<
