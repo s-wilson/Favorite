@@ -1,10 +1,10 @@
 class Book<ActiveRecord::Base
-  belongs_to :genre
-  validates_presence_of :title
-  validates_uniqueness_of :title
+  belongs_to :author
+  validates :title, (presence: true, uniqueness: true)
 end
-class Genre<ActiveRecord::Base
+class Author<ActiveRecord::Base
   has_many :books
+  validates_presence_of :name
 end
 class Book<ApplicationController
   def show
@@ -18,13 +18,13 @@ class Book<ApplicationController
     if @book.save
       redirect_to :action => 'list'
     else
-      @genres=Genre.find(:all)
+      @authors=Author.find(:all)
       redirect_to :action => 'new'
     end
   end
   def new
     @books=Book.new
-    @genres=Genre.find(:all)
+    @authors=Author.find(:all)
   end
   def delete
     @books=Book.find(params[:id]).destroy
@@ -39,4 +39,8 @@ end
 </head>
 <body>
 <p><%=greeting%></p>
-<
+<% if books.blank? %>
+<%=puts "You have no favorite books."%>
+<% else %>
+<%=Book.list.order(:name)%>
+<%end%>
