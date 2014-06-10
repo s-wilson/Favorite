@@ -1,7 +1,7 @@
 class Book<ActiveRecord::Base
   belongs_to :genre
   validates_presence_of :title
-  validates_
+  validates_uniqueness_of :title
 end
 class Genre<ActiveRecord::Base
   has_many :books
