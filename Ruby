@@ -1,9 +1,8 @@
 class Book<ActiveRecord::Base
-  belongs_to :author
   validates :title, {presence: true, uniqueness: true}
 end
 class Author<ActiveRecord::Base
-  has_many :books
+  belongs_to :book
   validates_presence_of :name
 end
 class Book<ApplicationController
