@@ -1,6 +1,6 @@
 class Book<ActiveRecord::Base
   belongs_to :author
-  validates :title, (presence: true, uniqueness: true)
+  validates :title, {presence: true, uniqueness: true}
 end
 class Author<ActiveRecord::Base
   has_many :books
@@ -40,7 +40,8 @@ end
 <body>
 <p><%=greeting%></p>
 <% if books.blank? %>
-<%=puts "You have no favorite books."%>
+<p><%=puts "You have no favorite books."%></p>
 <% else %>
-<%=Book.list.order(:name)%>
+<li><%=Book.list.order(:name)%></li>
 <%end%>
+<%=link_to 'Add a new book', Book.create%>
