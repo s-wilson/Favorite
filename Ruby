@@ -44,3 +44,7 @@ end
 <li><%=Book.list.order(:name)%></li>
 <%end%>
 <%=link_to 'Add a new book', Book.create%>
+<%= form_tag("/addbook",method: "get") do%>
+<%= label_tag(:book,"A Favorite Book:")%>
+<%= text_field_tag(:book)%>
+<%= label_tag(:author, "The Author:")%>
