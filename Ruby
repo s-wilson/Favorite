@@ -48,3 +48,5 @@ end
 <%= label_tag(:book,"A Favorite Book:")%>
 <%= text_field_tag(:book)%>
 <%= label_tag(:author, "The Author:")%>
+<%= submit_tag("Add")%>
+<%=end%>
